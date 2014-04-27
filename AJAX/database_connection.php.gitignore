@@ -1,8 +1,0 @@
-<?php
-
-function mySqlDBCon(){
-	$con = mysqli_connect('localhost', 'root', '', 'familyguy');
-return $con;
-}
-
-?>
