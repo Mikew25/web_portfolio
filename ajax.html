@@ -1,0 +1,55 @@
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script>
+	$(document).ready(function(){
+		var $cmbUsers = $('#users');
+		var $txtHint = $('#txtHint');
+		$cmbUsers.change(function() {
+			var $val = $cmbUsers.val();
+			
+			if ($val=="") {
+				$txtHint.html("");
+				return;
+			} 
+			
+			/*
+			$.ajax({
+				type: "GET",
+				url: "php.php",
+				dataType: "text",
+				data: {"q" : $val},
+				success:function( response ){
+					$txtHint.html( response );
+			}, 
+			error:function(xhr, ajaxOptions, thrownError){
+				alert(thrownError);
+			}
+			
+			});
+			*/			
+			$.get("php.php", {q:$val}, function(response){
+				console.log($val);
+				$txtHint.html( response );
+			});
+			
+		});
+	});
+	</script>
+</head>
+<body>
+
+<form>
+	<select id="users" name="users">
+		<option value="">Select a person:</option>
+		<option value="1">Peter Griffin</option>
+		<option value="2">Lois Griffin</option>
+		<option value="3">Glenn Quagmire</option>
+		<option value="4">Joseph Swanson</option>
+	</select>
+</form>
+<br>
+<div id="txtHint"><b>Person info will be listed here.</b></div>
+
+</body>
+</html>
